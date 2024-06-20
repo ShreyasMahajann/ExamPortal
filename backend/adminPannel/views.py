@@ -3,7 +3,7 @@
 from django.shortcuts import render,redirect
 from .models import *
 from rest_framework import generics ,status
-from .serializer import ProctorSerializer 
+from .serializer import ProctorSerializer ,TopicSerializer
 from rest_framework.response import Response
 
 
@@ -62,3 +62,15 @@ class deleteQuestion(generics.DestroyAPIView):
             return Response({"message": "Question deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
         else:
             return Response({"error": "Question not found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+class getTopic(generics.CreateAPIView):
+    queryset=Topic.objects.all()
+    serializer_class=TopicSerializer
+    def get(self, request): #simply gets all the question in database or question of certain field if provided in get request
+        queryset = super().get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+    def post(self, request, *args, **kwargs):
+        return Response({"error": "POST method not allowed"}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
