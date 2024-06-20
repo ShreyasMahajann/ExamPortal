@@ -6,6 +6,13 @@ from rest_framework import generics ,status
 from .serializer import ProctorSerializer 
 from rest_framework.response import Response
 
+
+
+
+
+#admin
+#admin@123
+
 # Create your views here.
 class getQuestion(generics.ListCreateAPIView):
     queryset = Question.objects.all()
