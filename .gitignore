@@ -1,2 +1,4 @@
 #nothing yet
-backend/backend/__pycache__
+*.pyc
+backend/adminPannel/__pycache__
+backend/adminPannel/__pycache__
