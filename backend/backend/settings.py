@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'loginAuth',
     'studentPannel',
     
+    'rest_framework',
+    'corsheaders',
+    
 ]
 
 MIDDLEWARE = [
