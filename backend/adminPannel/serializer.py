@@ -4,7 +4,7 @@ from .models import Question, Topic
 class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
-        fields = ["topic"]
+        fields = ["id","topic"]
 
 class ProctorSerializer(serializers.ModelSerializer):
     field = TopicSerializer()
