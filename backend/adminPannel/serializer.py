@@ -29,4 +29,14 @@ class ProctorSerializer(serializers.ModelSerializer):
         except Topic.DoesNotExist:
             raise serializers.ValidationError("Field does not exist")
         return attrs
-            
+    
+    def update(self, instance, validated_data):
+        # field_data = validated_data.pop('field')
+        instance.question = validated_data.get('question', instance.question)
+        instance.option1 = validated_data.get('option1', instance.option1)
+        instance.option2 = validated_data.get('option2', instance.option2)
+        instance.option3 = validated_data.get('option3', instance.option3)
+        instance.option4 = validated_data.get('option4', instance.option4)
+        instance.answer = validated_data.get('answer', instance.answer)
+        instance.save()
+        return instance

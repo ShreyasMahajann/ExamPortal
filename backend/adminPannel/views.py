@@ -38,7 +38,7 @@ class getQuestion(generics.ListCreateAPIView):
         question_id = request.data.get('id')
         if not question_id:
             return Response({"error": "id not provided"}, status=status.HTTP_400_BAD_REQUEST)
-        
+
         try:
             question = Question.objects.get(id=question_id)
         except Question.DoesNotExist:
@@ -46,7 +46,7 @@ class getQuestion(generics.ListCreateAPIView):
 
         serializer = ProctorSerializer(question, data=request.data, partial=True)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save()  # This will call the `update` method in the serializer
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
