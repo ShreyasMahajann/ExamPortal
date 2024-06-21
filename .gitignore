@@ -1,5 +1,5 @@
 #nothing yet
-*.pyc
 backend/adminPannel/__pycache__
-backend/adminPannel/__pycache__
+backend/studentPannel/__pycache__
 backend/loginAuth/__pycache__
+backend/backend/__pycache__
