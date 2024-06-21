@@ -24,11 +24,15 @@ class getQuestion(generics.ListCreateAPIView):
             queryset = queryset.filter(field__topic=field)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
-    def post(self, request):   # if a whole question is provided the creates that question as an object
-        serializer = ProctorSerializer(data=request.data)
+    
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response({"message": "Question created"}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
         
     def patch(self, request, *args, **kwargs):
         question_id = request.data.get('id')
