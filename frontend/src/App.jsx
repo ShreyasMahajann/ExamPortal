@@ -1,12 +1,10 @@
 import React from 'react'
 import QuizPage from './QuizPage';
-import Login from './Login';
-
+import AdminPanel from './AdminPanel';
 
 function App() {
   return (
     <>
-    <Login />
     </>
   )
 }

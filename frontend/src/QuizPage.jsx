@@ -18,7 +18,7 @@ const QuizPage = () => {
       id: 2,
       text: 'Which of these are primary colors?',
       options: ['Red', 'Green', 'Blue', 'Yellow'],
-      type: 'multi',
+      type: 'single',
     },
   ]);
 
@@ -62,6 +62,10 @@ const QuizPage = () => {
     review: 'bg-yellow-500',
   };
 
+  const handleMarkForReview = (questionId) => {
+    setMarkedForReview(prev => ({ ...prev, [questionId]: !prev[questionId] }));
+  };
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
@@ -82,7 +86,6 @@ const QuizPage = () => {
           </div>
         </div>
         <div>
-          <h3 className="text-lg font-semibold mb-2">Legend</h3>
           <div className="space-y-2">
             <div className="flex items-center">
               <div className={`w-4 h-4 rounded-full ${statusColors.attempted} mr-2`}></div>
@@ -94,7 +97,7 @@ const QuizPage = () => {
             </div>
             <div className="flex items-center">
               <div className={`w-4 h-4 rounded-full ${statusColors.review} mr-2`}></div>
-              <span>Marked for Review</span>
+              <span>Mark For Review</span>
             </div>
           </div>
         </div>
@@ -105,9 +108,11 @@ const QuizPage = () => {
         <h1 className="text-3xl font-bold mb-6">Quiz Title</h1>
         {questions.map(question => (
           <Question
-            key={question.id}
-            question={question}
-            onAnswerChange={(selectedOptions) => handleAnswerChange(question.id, selectedOptions)}
+          key={question.id}
+          question={question}
+          onAnswerChange={(selectedOptions) => handleAnswerChange(question.id, selectedOptions)}
+          onMarkForReview={() => handleMarkForReview(question.id)}
+          isMarkedForReview={markedForReview[question.id] || false}
           />
         ))}
       </div>
