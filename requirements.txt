@@ -1,3 +1,4 @@
 Django
 rest_framework
 django-jazzmin
+django-cors-headers
