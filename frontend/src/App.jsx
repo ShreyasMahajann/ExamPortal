@@ -1,12 +1,21 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import QuizPage from './QuizPage';
-import AdminPanel from './AdminPanel';
+import Question from './Question';
+import LoginPage from './Login';
+import AdminPannel from './AdminPanel';
+
 
 function App() {
   return (
-    <AdminPanel>
-    </AdminPanel>
-    
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminPannel />} />
+        {/* <Route path="/" element={<LoginPage />} /> */}
+        {/* <Route path="/student" element={<QuizPage />} /> */}
+      </Routes>
+    </Router>
   )
 }
 
